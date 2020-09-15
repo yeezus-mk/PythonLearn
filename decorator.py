@@ -1,41 +1,24 @@
-# декотрато с элементами оборачиваемой функции
-def square(func):
-    def wrapper(*args, **kwargs):
-        res = func(*args, **kwargs)
-        return res ** 2
+import math
 
+
+def decorator(func):
+
+    def wrapper():
+        eps = 0.00000001
+        result = 0
+        b = func
+        x = 1
+        while eps <= math.fabs(b(x)):
+            result += b(x)
+            x += 1
+        return result
     return wrapper
 
 
-# декоратор, который сам может принимать элементы нанписать декоратор, который находтиь сумму ряда с какой-то  точностью
-def pow(k):
-    def decorator(func):
-        def wrapper(*args, **kwargs):
-            res = 0
-            s = 0
-            delX = 0.000000001
-            for i in range(1, k + 1):
-                s += i
-            return s
-
-        return wrapper
-
-    return decorator
-    # for i in range(power):
+@decorator
+def sumSeries(x):
+    y = 1/x**2
+    return y
 
 
-pow(1)
-
-
-@square
-def f2(a, b, c):
-    return a + b + c
-
-
-@pow(k=2)
-def f4(x):
-    return x
-
-
-print(f2(1, 3, 0))
-print(f4())
+print(sumSeries())
