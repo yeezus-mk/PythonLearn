@@ -1,34 +1,33 @@
-from PythonLearn.people.Human import Human
-from random import randint
+import random as rnd
+
+from people.Human import Human
 
 
 class Woman(Human):
 
-    def __init__(self, name='Masha'):
+    def __init__(self, name='Noname'):
         super().__init__(name)
         self.hairColor = 'blond'
 
     def shopping(self, man):
+        # super().say(1)
         if isinstance(man, Human):
             if man.money > 0:
-                print(self.name + 'say: need ur money!!!')
+                print(self.name + ' say: Пора шопиться')
             else:
-                print(self.name + 'say: earn the fcking money!!!')
+                print(self.name + ' say: Нету денег!!!')
 
     @staticmethod
-    def sex(father, mother, name='Не выбрали'):
+    def sex(father, mother, name='НЕ выбрали'):
+        # проверить, чтобы папа был папой, а мама - мамой
+        # возвращать человека СЛУЧАЙНОГО пола и со случайный именем
         if isinstance(father, Human) and isinstance(mother, Woman):
-            genders = ['Мужчина', 'Женщина']
-            gender = genders[randint(0, 1)]
-            if gender == 'Мужчина':
-                names = ['Валерий', 'Кирилл', 'Стас', 'Виктор', 'Матвей',
-                         'Евгений', 'Дмитрий', 'Александр', 'Анатолий', 'Генадий']
+            genders = ('МУЖЧИНА', 'девка')
+            gender = rnd.choice(genders)
+            if gender == 'МУЖЧИНА':
+                first_names = ('Володя', 'Сергей', 'Ванос', 'Бубулкин', 'Андрей', 'Семен Семеныч', 'Гном Гномыч')
             else:
-                names = ['Светлана', 'Виктория', 'Алиса', 'Марина', 'Анна', 'Злата',
-                         'Дарья', 'Елизавета', 'Ирина', 'Мария', 'Александра', 'Евгения']
-            name = names[randint(0, len(names) - 1)]
-            print('Имя ребёнка: ' + name)
-            print('Пол ребёнка: ' + gender)
-            return Human(name)
-        else:
-            print('ну ты и извращуга!!!')
+                first_names = ('Света', 'Оля', 'Аня', 'Ванярита', 'Даша', 'ЛЮДА')
+            name = rnd.choice(first_names)
+            print('Пол: ' + gender)
+        return [Human(name), gender]
