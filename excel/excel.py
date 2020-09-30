@@ -1,5 +1,5 @@
 import xlsxwriter
-from db.DB import DB
+from application.modules.db.DB import DB
 
 db = DB()
 tests = db.getAllTestResults()

@@ -1,6 +1,6 @@
 import pytest
-from people.Human import Human
-from db.DB import DB
+from application.modules.people.Human import Human
+from application.modules.db.DB import DB
 
 db = DB()
 
